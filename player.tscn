@@ -1,6 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://cdkgs0xacl6o3"]
+[gd_scene load_steps=10 format=3 uid="uid://cdkgs0xacl6o3"]
 
 [ext_resource type="Script" path="res://CharacterBody3D.gd" id="1_d3qp0"]
+[ext_resource type="Script" path="res://SpringArm3D.gd" id="2_s7n02"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_imyip"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -34,7 +35,7 @@ environment = SubResource("Environment_7jr1m")
 transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
 shadow_enabled = true
 
-[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
+[node name="CharacterBody3D" type="CharacterBody3D" parent="." groups=["player"]]
 script = ExtResource("1_d3qp0")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D"]
@@ -45,8 +46,12 @@ skeleton = NodePath("../..")
 shape = SubResource("CapsuleShape3D_eoqt1")
 
 [node name="SpringArm3D" type="SpringArm3D" parent="CharacterBody3D"]
+spring_length = 3.0
+script = ExtResource("2_s7n02")
 
 [node name="Camera3D" type="Camera3D" parent="CharacterBody3D/SpringArm3D"]
+
+[node name="RayCast3D" type="RayCast3D" parent="CharacterBody3D/SpringArm3D/Camera3D"]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.3813, 0)
