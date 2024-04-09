@@ -1,0 +1,41 @@
+[gd_scene load_steps=7 format=3 uid="uid://dcassw7s4jk4e"]
+
+[ext_resource type="Script" path="res://RigidBody3D.gd" id="1_oy70m"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_tyrpl"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_xvdji"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_hou0u"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_r3iid"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_cahyx"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="RigidBody3D" type="RigidBody3D" parent="."]
+script = ExtResource("1_oy70m")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D"]
+mesh = SubResource("CapsuleMesh_tyrpl")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
+shape = SubResource("SphereShape3D_xvdji")
+
+[node name="Enemy" type="RigidBody3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Enemy"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Enemy"]
+shape = SubResource("CapsuleShape3D_hou0u")
+
+[node name="PlayerDetect" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerDetect"]
+shape = SubResource("CylinderShape3D_r3iid")
+
+[node name="BulletHit" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BulletHit"]
+shape = SubResource("SphereShape3D_cahyx")
